@@ -1,5 +1,7 @@
 import inquirer from 'inquirer'
-import { getAllEmployees, addEmployee, getAllRoles, getAllDepartments, greeting, rando }  from './employeeFunctions.js'
+import { getAllEmployees, addEmployee, getAllRoles, addRole, getAllDepartments, addDepartment, 
+    greeting, updateEmployeeRole, updateEmployeManager, getEmployeesFromManager,
+    getEmployeesByDepartment, getTotalBudgetByDepartment }  from './employeeFunctions.js'
 
 const StartMenu: Object[] = [
     {
@@ -14,6 +16,10 @@ const StartMenu: Object[] = [
             'Add Role',
             'Add Employee',
             'Update Employee Role',
+            'Update Employee Manager',
+            'View Employees by Manager',
+            'View Employees by Department',
+            'View Total Budget by Department'
         ]
     }
 ]
@@ -30,19 +36,31 @@ async function init() {
             await addEmployee()
             break
         case 'Update Employee Role':
-            await rando()
+            await updateEmployeeRole()
             break
         case 'View All Roles':
             console.table(await getAllRoles())
             break
         case 'Add Role':
-            await rando()
+            await addRole()
             break
         case 'View All Departments':
             console.table(await getAllDepartments())
             break
         case 'Add Department':
-            await rando()
+            await addDepartment()
+            break
+        case 'Update Employee Manager':
+            await updateEmployeManager()
+            break
+        case 'View Employees by Manager':
+            console.table(await getEmployeesFromManager())
+            break
+        case 'View Employees by Department':
+            console.table(await getEmployeesByDepartment())
+            break
+        case 'View Total Budget by Department':
+            await getTotalBudgetByDepartment()
             break
     }
     init()
